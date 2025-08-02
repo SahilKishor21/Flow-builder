@@ -63,7 +63,11 @@ export const FlowBuilder = () => {
         className="bg-gradient-to-br from-teal-50/50 to-white dark:from-gray-900 dark:to-gray-800"
       >
         <Controls className="bg-white dark:bg-gray-800 border border-teal-200 dark:border-gray-600 rounded-lg shadow-lg" />
-        <Background variant="dots" gap={12} size={1} color="#14b8a6" />
+        <Background 
+          gap={12} 
+          size={1} 
+          color="#14b8a6"
+        />
       </ReactFlow>
     </div>
   )
