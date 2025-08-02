@@ -4,11 +4,8 @@ import { useCallback, useRef, useState } from 'react'
 import ReactFlow, {
   Background,
   Controls,
-  MiniMap,
   ReactFlowProvider,
 } from 'reactflow'
-import BackgroundVariant from 'reactflow'
-import ReactFlowInstance from 'reactflow'
 import 'reactflow/dist/style.css'
 
 import { useFlowStore, onNodesChange, onEdgesChange, onConnect } from '@/store/flowStore'
@@ -21,7 +18,7 @@ const nodeTypes = {
 export const FlowBuilder = () => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null)
   const { nodes, edges, addNode } = useFlowStore()
-  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null)
+  const [reactFlowInstance, setReactFlowInstance] = useState<any>(null)
 
   const onDragOver = useCallback((event: React.DragEvent) => {
     event.preventDefault()
@@ -66,12 +63,7 @@ export const FlowBuilder = () => {
         className="bg-gradient-to-br from-teal-50/50 to-white dark:from-gray-900 dark:to-gray-800"
       >
         <Controls className="bg-white dark:bg-gray-800 border border-teal-200 dark:border-gray-600 rounded-lg shadow-lg" />
-        <MiniMap 
-          className="bg-white dark:bg-gray-800 border border-teal-200 dark:border-gray-600 rounded-lg shadow-lg"
-          nodeColor="#14b8a6"
-        />
-        <Background variant={BackgroundVariant.Dots} gap={12} size={1} color="#14b8a6" />
-        <Background variant={BackgroundVariant.Dots} gap={12} size={1} color="#14b8a6" />
+        <Background variant="dots" gap={12} size={1} color="#14b8a6" />
       </ReactFlow>
     </div>
   )

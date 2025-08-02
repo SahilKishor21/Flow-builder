@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-  // Ensure React Flow works properly in production
+  // Remove the deprecated appDir option as it's default in Next.js 14
   webpack: (config) => {
     config.module.rules.push({
       test: /\.node$/,

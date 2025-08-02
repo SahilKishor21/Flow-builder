@@ -115,13 +115,13 @@ export const onConnect = (connection: any) => {
   console.log('Connecting:', connection)
   
   // Check if source handle already has an edge (only one edge per source handle)
-  const existingEdge = edges.find((edge) => 
+  const existingEdge = edges.find((edge: any) => 
     edge.source === connection.source && edge.sourceHandle === connection.sourceHandle
   )
   
   if (existingEdge) {
     // Remove existing edge before adding new one
-    const filteredEdges = edges.filter((edge) => edge.id !== existingEdge.id)
+    const filteredEdges = edges.filter((edge: any) => edge.id !== existingEdge.id)
     setEdges(addEdge(connection, filteredEdges))
   } else {
     setEdges(addEdge(connection, edges))
