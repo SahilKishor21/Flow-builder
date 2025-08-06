@@ -2,7 +2,6 @@
 
 import { memo } from 'react'
 import { Handle } from 'reactflow'
-import Position from 'reactflow'
 import { MessageSquare } from 'lucide-react'
 import type { MessageNodeData } from '@/types'
 import { useFlowStore } from '@/store/flowStore'
@@ -20,7 +19,7 @@ const MessageNode = memo(({ id, data, selected }: MessageNodeProps) => {
     <div onClick={() => setSelectedNodeId(id)} className="cursor-pointer">
       <Handle
         type="target"
-        position={Position.Top}
+        position="top"
         style={{ background: '#14b8a6', width: '10px', height: '10px', border: '2px solid white' }}
       />
       
@@ -49,7 +48,7 @@ const MessageNode = memo(({ id, data, selected }: MessageNodeProps) => {
 
       <Handle
         type="source"
-        position={Position.Bottom}
+        position="bottom"
         style={{ background: '#14b8a6', width: '10px', height: '10px', border: '2px solid white' }}
       />
     </div>
