@@ -19,7 +19,7 @@ const MessageNode = memo(({ id, data, selected }: MessageNodeProps) => {
     <div onClick={() => setSelectedNodeId(id)} className="cursor-pointer">
       <Handle
         type="target"
-        position="top"
+        position={'top' as any}
         style={{ background: '#14b8a6', width: '10px', height: '10px', border: '2px solid white' }}
       />
       
@@ -48,7 +48,7 @@ const MessageNode = memo(({ id, data, selected }: MessageNodeProps) => {
 
       <Handle
         type="source"
-        position="bottom"
+        position={'bottom' as any}
         style={{ background: '#14b8a6', width: '10px', height: '10px', border: '2px solid white' }}
       />
     </div>

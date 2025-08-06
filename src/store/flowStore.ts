@@ -29,8 +29,6 @@ export const useFlowStore = create<FlowState>()(
           },
         }
         
-        console.log('Adding node:', newNode)
-        
         set((state) => ({
           nodes: [...state.nodes, newNode],
           nodeIdCounter: nodeIdCounter + 1,
@@ -58,23 +56,15 @@ export const useFlowStore = create<FlowState>()(
       validateFlow: () => {
         const { nodes, edges } = get()
         
-        console.log('Validating flow:', { nodes, edges })
-        
-        // If there's only one node or no nodes, it's valid
         if (nodes.length <= 1) {
           return { isValid: true }
         }
         
-        // Find nodes that don't have any incoming edges (empty target handles)
         const nodesWithoutTargets = nodes.filter((node) => {
           const hasIncomingEdge = edges.some((edge) => edge.target === node.id)
-          console.log(`Node ${node.id} has incoming edge:`, hasIncomingEdge)
           return !hasIncomingEdge
         })
         
-        console.log('Nodes without targets:', nodesWithoutTargets)
-        
-        // Error only if MORE THAN ONE node has empty target handles
         if (nodesWithoutTargets.length > 1) {
           return {
             isValid: false,
@@ -101,29 +91,25 @@ export const useFlowStore = create<FlowState>()(
 // Helper functions for React Flow
 export const onNodesChange = (changes: any) => {
   const { nodes, setNodes } = useFlowStore.getState()
-  setNodes(applyNodeChanges(changes, nodes))
+  setNodes(applyNodeChanges(changes, nodes as any) as any)
 }
 
 export const onEdgesChange = (changes: any) => {
   const { edges, setEdges } = useFlowStore.getState()
-  setEdges(applyEdgeChanges(changes, edges))
+  setEdges(applyEdgeChanges(changes, edges as any) as any)
 }
 
 export const onConnect = (connection: any) => {
   const { edges, setEdges } = useFlowStore.getState()
   
-  console.log('Connecting:', connection)
-  
-  // Check if source handle already has an edge (only one edge per source handle)
   const existingEdge = edges.find((edge: any) => 
     edge.source === connection.source && edge.sourceHandle === connection.sourceHandle
   )
   
   if (existingEdge) {
-    // Remove existing edge before adding new one
     const filteredEdges = edges.filter((edge: any) => edge.id !== existingEdge.id)
-    setEdges(addEdge(connection, filteredEdges))
+    setEdges(addEdge(connection, filteredEdges as any) as any)
   } else {
-    setEdges(addEdge(connection, edges))
+    setEdges(addEdge(connection, edges as any) as any)
   }
 }
